@@ -1,0 +1,45 @@
+{{! FOOTER }}
+<div id="mantanization-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mantanization-footer-title"><div class="title-block">About Me</div></div>
+                <div class="mantanization-footer-content">
+                    {{> footer_about}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mantanization-footer-title"><div class="title-block">Follow Me</div></div>
+                <div class="mantanization-footer-content">
+                    <div class="mantanization-widget-socialmedia">
+                        <ul>
+                            {{> socialmedia}}
+							<li><a href="{{@blog.url}}/rss/"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mantanization-footer-title"><div class="title-block">Newsletter</div></div>
+                <div class="mantanization-footer-content" style="padding-right:0px;">
+                    Enter your email address below to subscribe to our newsletter.
+
+                    {{> subscribe}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{! COPYRIGHT }}
+<div id="mantanization-copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                Copyright &copy; 2014 <a href="{{@blog.url}}">{{@blog.title}}</a> All rights reserved. Proudly published with <a href="http://ghost.org">Ghost</a>. 
+                <a href="http://id-webmaster.net" style="display:none">id-webmaster</a>
+            </div>
+        </div>
+    </div>
+</div>
