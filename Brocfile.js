@@ -1,12 +1,14 @@
-var filterCoffeeScript = require('broccoli-coffee')
-var filterTemplates = require('broccoli-template')
-var uglifyJavaScript = require('broccoli-uglify-js')
-var compileES6 = require('broccoli-es6-concatenator')
-var compileSass = require('broccoli-sass')
-var pickFiles = require('broccoli-static-compiler')
-var mergeTrees = require('broccoli-merge-trees')
-var findBowerTrees = require('broccoli-bower')
-var env = require('broccoli-env').getEnv()
+var filterCoffeeScript = require('broccoli-coffee');
+var filterTemplates = require('broccoli-template');
+var uglifyJavaScript = require('broccoli-uglify-js');
+var compileES6 = require('broccoli-es6-concatenator');
+var compileSass = require('broccoli-sass');
+var pickFiles = require('broccoli-static-compiler');
+var mergeTrees = require('broccoli-merge-trees');
+var findBowerTrees = require('broccoli-bower');
+var env = require('broccoli-env').getEnv();
+var instrument = require('broccoli-debug').instrument;
+var selectFiles = require('broccoli-select');
 
 function preprocess (tree) {
   tree = filterTemplates(tree, {
@@ -19,66 +21,44 @@ function preprocess (tree) {
   return tree
 }
 
-// var app = 'app',
-// app = pickFiles(app, {
-//   srcDir: '/',
-//   destDir: 'appkit' // move under appkit namespace
-// })
-// app = preprocess(app)
-
-var styles = 'app/styles'
-styles = pickFiles(styles, {
-  srcDir: '/',
-  destDir: 'appkit'
+// STYLE
+// -----------------
+var templatesTree = pickFiles('theme', {
+  srcDir: 'templates',
+  destDir: 'public'	
 })
-styles = preprocess(styles)
 
-// var tests = 'tests'
-// tests = pickFiles(tests, {
-//   srcDir: '/',
-//   destDir: 'appkit/tests'
-// })
-// tests = preprocess(tests)
+// STYLE
+// -----------------
+var styleAssets = pickFiles('theme/assets/styles', {
+	srcDir: '/',
+	destDir: '/public/assets/css'
+});
+// var bourbon = pickFiles('node_modules/node-bourbon/assets/stylesheets');
+// bourbon = instrument.print(bourbon);
+var processedStyle = compileSass([styleAssets], 'public/assets/css/app.scss', 'public/assets/css/app.css');
+processedStyle = instrument.print(processedStyle);
 
-// var vendor = 'vendor'
+// JAVASCRIPT
+// -----------------
+var javascriptAssets = pickFiles('theme/assets/javascript', {
+	srcDir: '/',
+	destDir: '/public/assets/js'
+});
+javascriptAssets = preprocess(javascriptAssets);
 
-// var sourceTrees = [app, styles, vendor]
-// if (env !== 'production') {
-//   sourceTrees.push(tests)
-// }
-// sourceTrees = sourceTrees.concat(findBowerTrees())
-//
-// var appAndDependencies = new mergeTrees(sourceTrees, { overwrite: true })
-//
-// var appJs = compileES6(appAndDependencies, {
-//   loaderFile: 'loader.js',
-//   ignoredModules: [
-//     'ember/resolver'
-//   ],
-//   inputFiles: [
-//     'appkit/**/*.js'
-//   ],
-//   legacyFilesToAppend: [
-//     'jquery.js',
-//     'handlebars.js',
-//     'ember.js',
-//     'ember-data.js',
-//     'ember-resolver.js'
-//   ],
-//   wrapInEval: env !== 'production',
-//   outputFile: '/assets/app.js'
-// })
+vendorScripts = selectFiles('/bower_components',{
+	acceptFiles: ['**/*.js'],
+	rejectFiles: [],
+	outputDir: '/vendor/js'
+})
+vendorScripts = instrument.print(vendorScripts);
 
-var appCss = compileSass(sourceTrees, 'appkit/app.scss', 'assets/app.css')
+// FONTS
+// -----------------
 
-// if (env === 'production') {
-//   appJs = uglifyJavaScript(appJs, {
-//     // mangle: false,
-//     // compress: false
-//   })
-// }
 
-var publicFiles = 'public'
 
-// module.exports = mergeTrees([appJs, appCss, publicFiles])
-module.exports = 
+// EXPORT
+// -----------------
+module.exports = mergeTrees([templatesTree, processedStyle, javascriptAssets]);
