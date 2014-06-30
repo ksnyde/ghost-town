@@ -23,42 +23,68 @@ function preprocess (tree) {
 
 // STYLE
 // -----------------
-var templatesTree = pickFiles('theme', {
+var blogTemplates = pickFiles('theme', {
   srcDir: 'templates',
-  destDir: 'public'	
+  destDir: '/'	
 })
 
 // STYLE
 // -----------------
 var styleAssets = pickFiles('theme/assets/styles', {
 	srcDir: '/',
-	destDir: '/public/assets/css'
+	destDir: '/assets/css'
 });
-// var bourbon = pickFiles('node_modules/node-bourbon/assets/stylesheets');
-// bourbon = instrument.print(bourbon);
-var processedStyle = compileSass([styleAssets], 'public/assets/css/app.scss', 'public/assets/css/app.css');
-processedStyle = instrument.print(processedStyle);
+var bourbon = 'node_modules/node-bourbon/assets/stylesheets';
+var processedStyle = compileSass([styleAssets,bourbon], 'assets/css/theme.scss', 'assets/css/theme.css');
+var vendorStyleSources = mergeTrees([
+	'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap',
+	'bower_components/font-awesome/css',
+	'bower_components/highlightjs/styles'
+]);
+var vendorStyle = pickFiles(vendorStyleSources,{
+	srcDir: '/',
+	files: ['*.css'],
+	destDir: '/assets/css'
+});
 
 // JAVASCRIPT
 // -----------------
-var javascriptAssets = pickFiles('theme/assets/javascript', {
+var templateScripts = pickFiles('theme/assets/javascript', {
 	srcDir: '/',
-	destDir: '/public/assets/js'
+	destDir: '/assets/js'
 });
-javascriptAssets = preprocess(javascriptAssets);
+templateScripts = preprocess(templateScripts);
 
-vendorScripts = selectFiles('/bower_components',{
-	acceptFiles: ['**/*.js'],
-	rejectFiles: [],
-	outputDir: '/vendor/js'
-})
-vendorScripts = instrument.print(vendorScripts);
+var bootstrap = pickFiles('bower_components/bootstrap-sass-official/assets/javascripts', {
+	srcDir: '/',
+	files: ['bootstrap.js'],
+	destDir: '/assets/js'
+});
+var velocity = pickFiles('bower_components/velocity', {
+	srcDir: '/',
+	files: ['jquery.velocity.js', 'velocity.ui.js'],
+	destDir: '/assets/js'
+});
+var highlightjs = pickFiles('bower_components/highlightjs', {
+	srcDir: '/',
+	files: ['highlight.pack.js'],
+	destDir: '/assets/js'
+});
+
+var vendorScripts = mergeTrees([bootstrap,velocity,highlightjs]);
 
 // FONTS
 // -----------------
-
-
+var fontSources = mergeTrees([
+	'theme/assets/fonts', // locally provided fonts
+	'bower_components/bootstrap-sass-official/assets/fonts/bootstrap', 
+	'bower_components/font-awesome/fonts'
+]);
+var fonts = pickFiles(fontSources, {
+	srcDir: '/',
+	destDir: '/assets/fonts'
+});
 
 // EXPORT
 // -----------------
-module.exports = mergeTrees([templatesTree, processedStyle, javascriptAssets]);
+module.exports = mergeTrees([blogTemplates, processedStyle, vendorStyle, templateScripts, vendorScripts, fonts]);
