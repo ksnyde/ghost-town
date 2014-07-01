@@ -2,11 +2,13 @@ var filterCoffeeScript = require('broccoli-coffee');
 var filterTemplates = require('broccoli-template');
 var uglifyJavaScript = require('broccoli-uglify-js');
 var compileES6 = require('broccoli-es6-concatenator');
+var concatFiles = require('broccoli-concat');
 var compileSass = require('broccoli-sass');
 var pickFiles = require('broccoli-static-compiler');
 var mergeTrees = require('broccoli-merge-trees');
 var findBowerTrees = require('broccoli-bower');
 var env = require('broccoli-env').getEnv();
+var imageMin = require('broccoli-imagemin');
 var instrument = require('broccoli-debug').instrument;
 var selectFiles = require('broccoli-select');
 
@@ -45,6 +47,12 @@ var vendorStyle = pickFiles(vendorStyleSources,{
 	srcDir: '/',
 	files: ['*.css'],
 	destDir: '/assets/css'
+});
+vendorStyle = concatFiles(vendorStyle, {
+	inputFiles: ['**/*.css'],
+	outputFile: '/assets/css/vendor.css',
+	header: '/** Vendor CSS files compiled by Thematic Ghost **/',
+	footer: '/** end of vendor CSS files compiled by Thematic Ghost **/',
 });
 
 // JAVASCRIPT
@@ -85,6 +93,22 @@ var fonts = pickFiles(fontSources, {
 	destDir: '/assets/fonts'
 });
 
+// IMAGES
+// -----------------
+var imageSources = mergeTrees([
+	'theme/assets/images' // local static images
+]);
+var images = pickFiles(imageSources, {
+	srcDir: '/',
+	destDir: '/assets/images'
+});
+// images = imageMin(images,{
+// 	lossyPNG: false,
+// 	progressive: true,
+// 	optimizationLevel: 3,
+// 	interlaced: true
+// });
+
 // EXPORT
 // -----------------
-module.exports = mergeTrees([blogTemplates, processedStyle, vendorStyle, templateScripts, vendorScripts, fonts]);
+module.exports = mergeTrees([blogTemplates, processedStyle, vendorStyle, templateScripts, vendorScripts, fonts, images]);
