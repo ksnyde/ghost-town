@@ -18,6 +18,7 @@
     "broccoli-bower": "^0.2.0",
     "broccoli-coffee": "^0.1.0",
     "broccoli-concat": "0.0.6",
+    "broccoli-debug": "^0.1.1",
     "broccoli-env": "0.0.1",
     "broccoli-es6-concatenator": "^0.1.4",
     "broccoli-imagemin": "^0.1.4",
