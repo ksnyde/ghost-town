@@ -54,6 +54,13 @@ vendorStyle = concatFiles(vendorStyle, {
 	header: '/** Vendor CSS files compiled by Thematic Ghost **/',
 	footer: '/** end of vendor CSS files compiled by Thematic Ghost **/',
 });
+// some vendors -- highlightjs for instance -- refer to images in same directory as css
+var highlightJsImages = pickFiles('bower_components/highlightjs/styles', {
+	srcDir: '/',
+	files: ['*.png','*.jpg'],
+	destDir: '/assets/css'
+});
+vendorStyle = mergeTrees([vendorStyle,highlightJsImages]);
 
 // JAVASCRIPT
 // -----------------
