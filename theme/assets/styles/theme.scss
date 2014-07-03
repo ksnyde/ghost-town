@@ -1,13 +1,15 @@
 @import "bourbon";
+@import "colours.scss";
+@import "posts.scss";
 @import "screen.scss";
 // Bootstrap Overrides
 $input-border-focus: #72C27B; // green border for active form control
 $input-color-placeholder: #C2C2C2;
 @import "bootstrap";
 
-div .post-holder .even {
-	color: #E6E6E6;
-	background: #8DE598;
+::selection {
+	color: $colorNormal;
+	background-color: $colorNormalBackground;
 }
 
 #of-interest {
@@ -20,7 +22,7 @@ div .post-holder .even {
 	@include background-image(
 		linear-gradient(to top, hsla(100%, 100%, 100%, 0.30) 0%, hsla(100%, 100%, 100%, 0.1) 50%)
 	);
-	padding: 25px 10px 10px 35px;
+	padding: 15px 35px 15px 35px;
 	border-radius: 8px;
 	right:5%;
 }
@@ -52,16 +54,17 @@ div .post-holder .even {
 
 menu {
 	item {
-		padding-right: 8px;
-		padding-left: 8px;
+		margin-right: 8px;
+		margin-left: 8px;
 		cursor: pointer;
 		font-weight: bolder;
+		font-size: 1.6rem;
 		
 		&:hover, &:focus {
 			text-decoration-line: overline;
 			text-decoration-style: wavy;
 			text-decoration-color: #193616;
-			color: #193616;
+			color: $colorDarker;
 			@include transition(all .15s ease-in);
 		}
 		&:click {

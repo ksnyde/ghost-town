@@ -1,0 +1,11 @@
+.post-holder {
+    position: relative;
+    width: 100%;
+    height: 100%;
+	color: $textNormal;
+	background: $backgroundBranded;
+}
+
+.post-holder.odd {
+	background: $backgroundNormal;
+}

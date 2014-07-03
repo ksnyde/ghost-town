@@ -103,7 +103,7 @@ a.fa {
 
 ::selection {
     color: #222;
-    background: #D6EDFF;
+//    background: #D6EDFF;
     text-shadow: none;
 }
 .left {
@@ -487,13 +487,6 @@ li {
     font-weight: 300;
     font-family: 'Roboto Slab', serif;
     letter-spacing: 0;
-}
-
-.post-holder {
-    width:100%;
-    height: 100%;
-    background: #f2efe8;
-    position: relative;
 }
 
 /* Every post, on every page, gets this style on its <article> tag */

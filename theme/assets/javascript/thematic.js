@@ -1,6 +1,6 @@
 // Configuration for ThematicGhost theme
 var ThematicGhost = { 
-	disqus_id: 'lifegadget',
+	disqus_id: 'foobar',
 	google_analytics_id: '1234',
 	head_content_location: 'right',
 	mail_chimp_id: 'd4ac63ea63cb62dd853f6fd7e037eca3-us4',
