@@ -37,7 +37,8 @@ var styleAssets = pickFiles('theme/assets/styles', {
 	destDir: '/assets/css'
 });
 var bourbon = 'node_modules/node-bourbon/assets/stylesheets';
-var processedStyle = compileSass([styleAssets,bourbon], 'assets/css/theme.scss', 'assets/css/theme.css');
+var bootstrap = 'bower_components/bootstrap-sass-official/assets/stylesheets';
+var processedStyle = compileSass([styleAssets,bourbon,bootstrap], 'assets/css/theme.scss', 'assets/css/theme.css');
 var vendorStyleSources = mergeTrees([
 	'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap',
 	'bower_components/font-awesome/css',
@@ -45,7 +46,7 @@ var vendorStyleSources = mergeTrees([
 ]);
 var vendorStyle = pickFiles(vendorStyleSources,{
 	srcDir: '/',
-	files: ['*.css'],
+	files: ['*.css','*.scss'],
 	destDir: '/assets/css'
 });
 vendorStyle = concatFiles(vendorStyle, {

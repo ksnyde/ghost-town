@@ -4,20 +4,46 @@
     the {body} of the default.hbs template, which contains our header/footer. }}
 
 {{! The big featured header on the homepage, with the site logo and description }}
-<header id="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+<header id="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}} class="head-content-{{ThematicGhost.head_content_location}}">
     <div class="vertical">
-        <div id="site-head-content" class="inner">
+        <div id="site-head-content" class="inner right">
 
             {{#if @blog.logo}}<a id="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
             <h1 class="blog-title">{{@blog.title}}</h1>
             <h2 class="blog-description">{{@blog.description}}</h2>
-
-            <a class='btn first'>Take a tour</a>
-            <a class='btn last'>Cut to the chase</a><br>
+			
+			<form id="of-interest" class="" style="width: 75%">
+				<div class="centered-widget">
+					<div class="input-group input-lg">
+						<div class="input-group-addon">@</div>
+						<input class="form-control input-lg" type="email" placeholder="your email address" tabindex="1">
+						<div class="input-group-addon submit-registration" tabindex="2">
+							<div type="button" >
+								Register
+							</div>
+						</div>
+					  </div>
+				  </div>
+			</form>
+			<!--
+	            <a class='btn first'>Take a tour</a>
+	            <a class='btn last'>Cut to the chase</a><br>
+			-->
+			<div id="registration-desc">
+				If you're interested in hearing more about how and what we're doing,
+				<br/>add your email above and we'll keep you in the loop.
+			</div>
+				
+			<menu>
+				<item>About</item> |
+				<item>Blog</item> |
+				<item>Contact Us</item>
+			</menu>
+			
+			
             <i id='header-arrow' class="fa fa-angle-down"></i>
         </div>
     </div>
-
 </header>
 
 {{! The main content area on the homepage }}

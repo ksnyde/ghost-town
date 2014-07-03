@@ -1,8 +1,71 @@
 @import "bourbon";
 @import "screen.scss";
-
+// Bootstrap Overrides
+$input-border-focus: #72C27B; // green border for active form control
+$input-color-placeholder: #C2C2C2;
+@import "bootstrap";
 
 div .post-holder .even {
 	color: #E6E6E6;
 	background: #8DE598;
+}
+
+#of-interest {
+	margin-top: 25px;
+	width: 75%;
+	display: inline-block;
+}
+
+#site-head-content {
+	@include background-image(
+		linear-gradient(to top, hsla(100%, 100%, 100%, 0.30) 0%, hsla(100%, 100%, 100%, 0.1) 50%)
+	);
+	padding: 25px 10px 10px 35px;
+	border-radius: 8px;
+	right:5%;
+}
+
+.submit-registration {
+	@include background(linear-gradient(#E9E9E9, #D5D5D5 ) left repeat, radial-gradient(#E9E9E9, #D5D5D5 ) left repeat);
+	padding-right: 10px;
+	padding-left: 10px;
+	
+	::selection {
+		background-color: black;
+	}
+	
+	&:hover {
+		@include background(linear-gradient(#CCE9D4, #AFD5AE ) left repeat, radial-gradient(#CCE9D4, #AFD5AE ) left repeat);
+		cursor: pointer;
+//		@include animation(slide 1.0s ease);
+		@include transition(all .25s ease-in);
+//		@include transform(translateX(10px));
+	}
+}
+
+#registration-desc {
+	margin: 0 35px 0 35px;
+	font-size: 1.25rem;
+	line-height: 1.5rem;
+	font-weight: lighter;
+}
+
+menu {
+	item {
+		padding-right: 8px;
+		padding-left: 8px;
+		cursor: pointer;
+		font-weight: bolder;
+		
+		&:hover, &:focus {
+			text-decoration-line: overline;
+			text-decoration-style: wavy;
+			text-decoration-color: #193616;
+			color: #193616;
+			@include transition(all .15s ease-in);
+		}
+		&:click {
+			color: red;
+		}
+	}
 }
