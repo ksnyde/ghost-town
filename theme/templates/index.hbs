@@ -8,8 +8,12 @@
     <div class="vertical">
         <div id="site-head-content" class="inner right">
 
-            {{#if @blog.logo}}<a id="blog-logo" href="{{@blog.url}}" tabindex="-1"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
-            <h1 class="blog-title">{{@blog.title}}</h1>
+            {{#if @blog.logo}}
+				<a id="blog-logo" href="{{@blog.url}}" tabindex="-1"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>
+	            <h1 class="blog-title hidden">{{@blog.title}}</h1>
+			{{else}}
+	            <h1 class="blog-title">{{@blog.title}}</h1>			
+			{{/if}}
             <h2 class="blog-description">{{@blog.description}}</h2>
 			
 			<form id="of-interest" class="" style="width: 75%">
@@ -35,7 +39,7 @@
 			</div>
 				
 			<menu>
-				<item tabindex="3">About</item> |
+				<item tabindex="3" id="about-link">About</item> |
 				<item tabindex="5">Contact Us</item>
 			</menu>
 			

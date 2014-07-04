@@ -32,22 +32,16 @@ $input-color-placeholder: #C2C2C2;
 	padding-right: 10px;
 	padding-left: 10px;
 	
-	::selection {
-		background-color: black;
-	}
-	
 	&:hover {
 		@include background(linear-gradient(#CCE9D4, #AFD5AE ) left repeat, radial-gradient(#CCE9D4, #AFD5AE ) left repeat);
 		cursor: pointer;
-//		@include animation(slide 1.0s ease);
 		@include transition(all .25s ease-in);
-//		@include transform(translateX(10px));
 	}
 }
 
 #registration-desc {
 	margin: 0 35px 0 35px;
-	font-size: 1.25rem;
+	font-size: 1.25rem; 
 	line-height: 1.5rem;
 	font-weight: lighter;
 }

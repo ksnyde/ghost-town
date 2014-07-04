@@ -12,39 +12,30 @@ var $post = $('.post'),
 /*globals jQuery, document */
 (function ($) {
     "use strict";
-    function srcTo (el) {
+    function scrollTo (el) {
     	$('html, body').animate({
 			scrollTop: el.offset().top
 		}, 1000);
     }
     $(document).ready(function(){
      
-        // $postholder.each(function (e) {
-        // 	if(e % 2 != 0)
-        // 		$(this).css({
-        //             'background': '#0099cc',
-        //             'color'     : 'white',
-        //         })
+        // $postafter.each(function (e) {
+        // 	var bg = $(this).parent().css('background-color')
+        // 	$(this).css('border-top-color', bg)
+        //
+        // 	if(e % 2 == 0)
+        // 		$(this).css('left', '6%')
+        //
         // })
 
-        $postafter.each(function (e) {
-        	var bg = $(this).parent().css('background-color')
-        	$(this).css('border-top-color', bg)
-
-        	if(e % 2 == 0)
-        		$(this).css('left', '6%')
-
-        })
-        
-
-        $('.btn.first').click( function () {
-        	srcTo ($first)
+        $('#about-link').click( function () {
+        	scrollTo($first);
         })
         $('.btn.last').click( function () {
-        	srcTo ($last)
+        	scrollTo($last);
         })
         $('#header-arrow').click(function () {
-            srcTo ($first)
+            scrollTo($first);
         })
 
         $('.post-title').each(function () {
@@ -104,7 +95,7 @@ var $post = $('.post'),
         
     });
     
-
+	// AUTO COMPLETES FONT-AWESOME ICONS
     $post.each(function () {
         var postText = $(this).html();
         var fa  = [];
