@@ -50,7 +50,6 @@ MailChimpProxyServer.post('/moreInfo/:email', function(req,res) {
 });
 
 MailChimpProxyServer.listen(4400, function() {
-	// console.log(chalk.green('Listening on port %d', app.address().port));
 	console.log(chalk.green('MailChimp proxy service started.'));
 });
 

@@ -23,7 +23,7 @@ function subscribeMailChimp() {
 		console.log("form being submitted: " + emailAddress);
 		$("#message").html("<span class='error'>Adding your email address...</span>");
 		$.ajax({
-			url: 'chimp/subscribe/' + emailAddress, 
+			url: 'chimp/register/' + emailAddress, 
 			data: $('#signup').serialize(),
 			success: function(msg) {
 				$('.register-message').addClass('animated fadeOutUp');
