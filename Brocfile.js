@@ -37,15 +37,17 @@ var styleAssets = pickFiles('theme/assets/styles', {
 	destDir: '/assets/css'
 });
 var bourbon = 'node_modules/node-bourbon/assets/stylesheets';
-var processedStyle = compileSass([styleAssets,bourbon], 'assets/css/theme.scss', 'assets/css/theme.css');
+var bootstrap = 'bower_components/bootstrap-sass-official/assets/stylesheets';
+var processedStyle = compileSass([styleAssets,bourbon,bootstrap], 'assets/css/theme.scss', 'assets/css/theme.css');
 var vendorStyleSources = mergeTrees([
 	'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap',
 	'bower_components/font-awesome/css',
-	'bower_components/highlightjs/styles'
+	'bower_components/highlightjs/styles',
+	'bower_components/animate.css'
 ]);
 var vendorStyle = pickFiles(vendorStyleSources,{
 	srcDir: '/',
-	files: ['*.css'],
+	files: ['*.css','*.scss'],
 	destDir: '/assets/css'
 });
 vendorStyle = concatFiles(vendorStyle, {
@@ -54,6 +56,13 @@ vendorStyle = concatFiles(vendorStyle, {
 	header: '/** Vendor CSS files compiled by Thematic Ghost **/',
 	footer: '/** end of vendor CSS files compiled by Thematic Ghost **/',
 });
+// some vendors -- highlightjs for instance -- refer to images in same directory as css
+var highlightJsImages = pickFiles('bower_components/highlightjs/styles', {
+	srcDir: '/',
+	files: ['*.png','*.jpg'],
+	destDir: '/assets/css'
+});
+vendorStyle = mergeTrees([vendorStyle,highlightJsImages]);
 
 // JAVASCRIPT
 // -----------------

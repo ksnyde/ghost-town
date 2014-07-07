@@ -1,0 +1,91 @@
+
+menu {
+	margin-left: -10px;
+	margin-top: 40px;
+	item {
+		margin-right: 8px;
+		margin-left: 8px;
+		cursor: pointer;
+		font-weight: bolder;
+		font-size: 1.6rem;
+		
+		&:hover, &:focus {
+			text-decoration-line: overline;
+			text-decoration-style: wavy;
+			text-decoration-color: #193616;
+			color: $colorDarker;
+			@include transition(all .15s ease-in);
+		}
+		&:click {
+			color: red;
+		}
+	}
+}
+
+.fixed-nav {
+    display: none;
+    opacity: 1;
+    position: fixed;
+    top: 10px;
+    left: 2%;
+    z-index: 99999;
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    line-height: 130%;
+    font-weight: bold;
+}
+a.fn-item {
+    display: block;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.white {
+    color: white;
+}
+a.fn-item:hover {
+    color: #9fd067;
+}
+a.fn-item.active {
+    color: #86c440;
+    opacity: 1;
+
+}
+
+.home-button {
+	margin-top: -20px;
+	font-size: 2.2rem;
+	line-height: 3.0rem;
+	cursor: pointer;
+//	text-decoration: underline;
+	text-weight: bold;
+	&:hover {
+		color: $textHover;
+	};
+}
+
+#header-arrow {
+    font-size: 120px;
+	line-height: 6.0rem;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0.6;
+	@include transition(all 0.3s ease-in-out);
+}
+#header-arrow:hover {
+    opacity: 0.9;
+}
+#upward-arrow {
+    font-size: 120px;
+	line-height: 6.0rem;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0.1;
+	@include transition(all 0.3s ease-in-out);
+}
+#upward-arrow:hover {
+    opacity: 0.6;
+}
+
