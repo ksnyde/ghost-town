@@ -42,7 +42,8 @@ var processedStyle = compileSass([styleAssets,bourbon,bootstrap], 'assets/css/th
 var vendorStyleSources = mergeTrees([
 	'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap',
 	'bower_components/font-awesome/css',
-	'bower_components/highlightjs/styles'
+	'bower_components/highlightjs/styles',
+	'bower_components/animate.css'
 ]);
 var vendorStyle = pickFiles(vendorStyleSources,{
 	srcDir: '/',

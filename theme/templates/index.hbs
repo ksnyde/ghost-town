@@ -7,42 +7,48 @@
 <header id="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}} class="head-content-{{ThematicGhost.head_content_location}}">
     <div class="vertical">
         <div id="site-head-content" class="inner right">
-
-            {{#if @blog.logo}}
-				<a id="blog-logo" href="{{@blog.url}}" tabindex="-1"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>
-	            <h1 class="blog-title hidden">{{@blog.title}}</h1>
-			{{else}}
-	            <h1 class="blog-title">{{@blog.title}}</h1>			
-			{{/if}}
-            <h2 class="blog-description">{{@blog.description}}</h2>
-			
-			<form id="of-interest" class="" style="width: 75%">
-				<div class="centered-widget">
-					<div class="input-group input-lg">
-						<div class="input-group-addon">@</div>
-						<input class="form-control input-lg" type="email" placeholder="your email address" tabindex="1">
-						<div class="input-group-addon submit-registration" tabindex="2">
-							<div type="button" >
-								Register
-							</div>
-						</div>
-					  </div>
-				  </div>
-			</form>
-			<!--
-	            <a class='btn first'>Take a tour</a>
-	            <a class='btn last'>Cut to the chase</a><br>
-			-->
-			<div id="registration-desc">
-				If you're interested in hearing more about how and what we're doing,
-				<br/>add your email above and we'll keep you in the loop.
+			<div id="branding-header">
+	            {{#if @blog.logo}}
+					<a id="blog-logo" href="{{@blog.url}}" tabindex="-1"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>
+		            <h1 class="blog-title hidden">{{@blog.title}}</h1>
+				{{else}}
+		            <h1 class="blog-title">{{@blog.title}}</h1>
+				{{/if}}
+	            <h2 class="blog-description">{{@blog.description}}</h2>
 			</div>
-				
+			<div class="register-message">			
+				<form id="subscribe-form" action="javascript:subscribeMailChimp()" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					<div id="registration-widget" class="centered-widget">
+						<div class="input-group input-lg">
+							<div class="input-group-addon"><i class="fa fa-envelope-o"></i> </div>
+							<input id="registration-email" name="EMAIL" class="form-control input-lg" type="email" placeholder="your email address" tabindex="1">
+							<div class="input-group-addon submit-registration" tabindex="2">
+								<div type="submit" name="subscribe" id="subscribe-button" onClick="subscribeMailChimp()">
+									Register
+								</div>
+							</div>
+						  </div>
+					  </div>
+				</form>
+				<div id="registration-desc">
+					If you're interested in hearing more about what we're doing,
+					<br/>add your email above and we'll keep you in the loop.
+				</div>		
+			</div> {{! END register-message }}
+			<div class="registration-success hidden">
+				{{> registration_success}}
+			</div>
+			<div class="registration-already-exists hidden">
+				{{> registration_already_exists}}
+			</div>
+			<div class="registration-error hidden">
+				{{> registration_error}}
+			</div>
+			
 			<menu>
 				<item tabindex="3" id="about-link">About</item> |
 				<item tabindex="5">Contact Us</item>
 			</menu>
-			
 			
             <i id='header-arrow' class="fa fa-angle-down"></i>
         </div>
@@ -53,6 +59,8 @@
 <main class="content" role="main">
 
     <div class='fixed-nav'>
+		<i id='upward-arrow' class="fa fa-angle-up home-nav"></i><br/>
+		<span class="home-button home-nav">{{@blog.title}}</span><br/>
     </div>
 
     {{! Each post will be output using this markup }}

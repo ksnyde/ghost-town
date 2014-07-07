@@ -1,10 +1,12 @@
 @import "bourbon";
 @import "colours.scss";
 @import "posts.scss";
+@import "navigation.scss";
 @import "screen.scss";
 // Bootstrap Overrides
-$input-border-focus: #72C27B; // green border for active form control
-$input-color-placeholder: #C2C2C2;
+$brand-primary: $backgroundBranded;
+$input-border-focus: $backgroundBranded; // green border for active form control
+$input-color-placeholder: $textLight;
 @import "bootstrap";
 
 ::selection {
@@ -12,10 +14,14 @@ $input-color-placeholder: #C2C2C2;
 	background-color: $colorNormalBackground;
 }
 
-#of-interest {
+#subscribe-form {
 	margin-top: 25px;
 	width: 75%;
 	display: inline-block;
+}
+
+#branding-header {
+	margin-bottom: 2rem;
 }
 
 #site-head-content {
@@ -36,6 +42,7 @@ $input-color-placeholder: #C2C2C2;
 		@include background(linear-gradient(#CCE9D4, #AFD5AE ) left repeat, radial-gradient(#CCE9D4, #AFD5AE ) left repeat);
 		cursor: pointer;
 		@include transition(all .25s ease-in);
+		border-color: $backgroundBranded;
 	}
 }
 
@@ -44,25 +51,4 @@ $input-color-placeholder: #C2C2C2;
 	font-size: 1.25rem; 
 	line-height: 1.5rem;
 	font-weight: lighter;
-}
-
-menu {
-	item {
-		margin-right: 8px;
-		margin-left: 8px;
-		cursor: pointer;
-		font-weight: bolder;
-		font-size: 1.6rem;
-		
-		&:hover, &:focus {
-			text-decoration-line: overline;
-			text-decoration-style: wavy;
-			text-decoration-color: #193616;
-			color: $colorDarker;
-			@include transition(all .15s ease-in);
-		}
-		&:click {
-			color: red;
-		}
-	}
 }

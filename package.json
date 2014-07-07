@@ -35,6 +35,13 @@
     "ghost": "^0.4.2",
     "grunt": "^0.4.5",
     "node-bourbon": "^1.2.3",
-    "rimraf": "~2.2.6"
+    "rimraf": "~2.2.6",
+    "mailchimp": "^1.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "connect": "^3.0.1",
+    "express": "^4.5.0",
+    "http-proxy": "^1.1.4"
   }
 }

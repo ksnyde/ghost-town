@@ -1,3 +1,6 @@
+/*jslint browser: true, jquery: true */ 
+/*global console:true*/
+
 /**
  * Main JS file for GhostScroll behaviours
  */
@@ -8,6 +11,35 @@ var $post = $('.post'),
 	$postholder = $('.post-holder'),
 	$postafter = $('.post-after'),
 	$sitehead = $('#site-head');
+	
+function subscribeMailChimp() {
+	var emailAddress = $('#registration-email').val();
+	if(!emailAddress || !emailAddress.match('\@') || !emailAddress.match('\.') ) {
+		console.log('no or bad email: ' + emailAddress);
+		$('#registration-widget').addClass('invalid animated shake').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+			$('#registration-widget').removeClass('animated shake');
+		});
+	} else {
+		console.log("form being submitted: " + emailAddress);
+		$("#message").html("<span class='error'>Adding your email address...</span>");
+		$.ajax({
+			url: 'chimp/subscribe/' + emailAddress, 
+			data: $('#signup').serialize(),
+			success: function(msg) {
+				$('.register-message').addClass('animated fadeOutUp');
+				$('.registration-success').addClass('animated fadeInUp');
+				$('#message').html(msg); 
+			},
+			error: function(error) {
+				$('.register-message').addClass('animated fadeOutUp');
+				$('.registration-error').removeClass('hidden').addClass('animated fadeInUp');
+				console.log(error);
+			}
+		});		
+	}
+	return false;
+}
+	
 
 /*globals jQuery, document */
 (function ($) {
@@ -16,18 +48,10 @@ var $post = $('.post'),
     	$('html, body').animate({
 			scrollTop: el.offset().top
 		}, 1000);
-    }
+    }	
+	
     $(document).ready(function(){
      
-        // $postafter.each(function (e) {
-        // 	var bg = $(this).parent().css('background-color')
-        // 	$(this).css('border-top-color', bg)
-        //
-        // 	if(e % 2 == 0)
-        // 		$(this).css('left', '6%')
-        //
-        // })
-
         $('#about-link').click( function () {
         	scrollTo($first);
         })
@@ -36,6 +60,9 @@ var $post = $('.post'),
         })
         $('#header-arrow').click(function () {
             scrollTo($first);
+        })
+        $('.home-nav').click(function () {
+            scrollTo($sitehead);
         })
 
         $('.post-title').each(function () {

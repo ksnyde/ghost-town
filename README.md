@@ -1,6 +1,21 @@
 # Thematic Ghost #
 
-This repo is intended to help you build an asset-pipeline for Ghost blogging themes. The asset pipeline leverages [Broccoli](https://github.com/broccolijs) to ensure that your SASS scripts are compiled, your JS concatinated, and your bower packaged included. As the image above illustrates visually, this package will do the following:
+This repo grew out of the need to service two key use-cases:
+
+1. Allow tech entrepreneurs to deploy quick a single-page app for a newly created company. This would include the ability to:
+	- Have a static cover page, an "about page", a "blog", and a "contact us" page out of the box
+	- Provide a secure interaction with MailChimp for subscribe/unsubscribe list management
+	- 
+2. Provide theme developers for Ghost an efficient asset pipeline for building these themes.
+	- Allow use of SASS style sheets that compile down to CSS automatically
+	- Provide 
+
+
+![ ](documentation/images/services.png)
+
+
+
+is intended to help you build an asset-pipeline for Ghost blogging themes. The asset pipeline leverages [Broccoli](https://github.com/broccolijs) to ensure that your SASS scripts are compiled, your JS concatinated, and your bower packaged included. As the image above illustrates visually, this package will do the following:
 
 - `theme` - provide a sandbox for you to work on all your theme templates, styles, and JS
 - `public` - provide a "compiled", ready-to-use ghost theme that is available in real-time (or at least microseconds away from real-time)

@@ -14,16 +14,16 @@ config = {
         // Example mail config
         // Visit http://docs.ghost.org/mail for instructions
         // ```
-        //  mail: {
-        //      transport: 'SMTP',
-        //      options: {
-        //          service: 'Mailgun',
-        //          auth: {
-        //              user: '', // mailgun username
-        //              pass: ''  // mailgun password
-        //          }
-        //      }
-        //  },
+         mail: {
+             transport: 'SMTP',
+             options: {
+                 service: 'Mandrill',
+                 auth: {
+                     user: 'ken@lifegadget.co', 
+                     pass: 'y7e-qVXXFLGKseGgd5pkkg'  
+                 }
+             }
+         },
         // ```
 
         database: {
