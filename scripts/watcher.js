@@ -2,6 +2,7 @@
 
 // var timepiece = require('broccoli-timepiece/index');
 var ghost = require('ghost');
+var chimp = require('./MailChimpProxyServer');
 var fs       = require('fs');
 var path     = require('path');
 var chalk    = require('chalk');

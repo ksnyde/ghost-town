@@ -12,13 +12,13 @@ var proxy	 = require('http-proxy');
 
 var options = {
 	router: {
-		'localhost/chimp': '127.0.0.1:4400',
+		// 'localhost/chimp': '127.0.0.1:4400',
 		'localhost': '127.0.0.1:2368'
 	},
 	'target': {
-		'protocol': 'http'
+		'protocol': 'http:'
 	}
 };
 
-var proxyServer = proxy.createServer(options);
-proxyServer.listen(5010);
+var proxyServer = proxy.createServer(options).listen(5010);
+// var proxyServer = proxy.createServer(2378,'localhost').listen(5010);

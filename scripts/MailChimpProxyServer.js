@@ -5,9 +5,9 @@ var
 	connect = require('connect'),
 	bodyParser = require('body-parser'),
 	chalk = require('chalk'),
-	app = express();
+	MailChimpProxyServer = express();
 // add node's body parser to middelware
-app.use(bodyParser.json());	
+MailChimpProxyServer.use(bodyParser.json());	
 	
 var 
 	MailChimpAPI = require('mailchimp').MailChimpAPI,
@@ -27,7 +27,7 @@ function monkeyRegister(req,res,notify) {
 			console.log(error.message);
 		}
 		else {
-			console.log(JSON.stringify(data)); // Do something with your data!		
+			console.log(JSON.stringify(data)); // Do something with your data!
 			res.json(200, data);
 		}
 	});
@@ -40,16 +40,18 @@ try {
     console.log(error.message);
 }
 // define proxy services
-app.post('/register/:email', function(req,res) {
+MailChimpProxyServer.post('/register/:email', function(req,res) {
 	monkeyRegister(req,res,true);
 });
 
 
-app.post('/moreInfo/:email', function(req,res) {
+MailChimpProxyServer.post('/moreInfo/:email', function(req,res) {
 	monkeyRegister(req,res,false);
 });
 
-app.listen(4400, function() {
+MailChimpProxyServer.listen(4400, function() {
 	// console.log(chalk.green('Listening on port %d', app.address().port));
 	console.log(chalk.green('MailChimp proxy service started.'));
 });
+
+module.export = MailChimpProxyServer;
