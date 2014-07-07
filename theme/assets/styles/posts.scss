@@ -1,0 +1,30 @@
+.post-holder {
+    position: relative;
+    width: 100%;
+    height: 100%;
+	color: $textNormal;
+	background: $backgroundBranded;
+}
+
+.post-holder.odd {
+	background: $backgroundNormal;
+}
+
+.post-after {
+    position: absolute;
+	right: 6%;
+    bottom: -40px;
+    z-index: 1;
+    width: 0; 
+    height: 0; 
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-top: 50px solid;
+	border-top-color: $backgroundBranded;
+    border-radius: 25px;
+}
+
+.odd .post-after {
+	left: 6%;
+	border-top-color: $backgroundNormal;
+}

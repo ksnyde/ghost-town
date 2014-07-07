@@ -10,7 +10,8 @@
     "url": "https://github.com/ksnyde/thematic-ghost"
   },
   "scripts": {
-    "postinstall": "node_modules/.bin/bower install"
+    "postinstall": "scripts/post-install.bash",
+    "start": "scripts/watcher.js"
   },
   "devDependencies": {
     "bower": "^1.2.8",
@@ -18,15 +19,29 @@
     "broccoli-bower": "^0.2.0",
     "broccoli-coffee": "^0.1.0",
     "broccoli-concat": "0.0.6",
+    "broccoli-debug": "^0.1.1",
     "broccoli-env": "0.0.1",
     "broccoli-es6-concatenator": "^0.1.4",
     "broccoli-imagemin": "^0.1.4",
+    "broccoli-kitchen-sink-helpers": "~0.2.0",
     "broccoli-merge-trees": "^0.1.3",
     "broccoli-sass": "^0.2.0",
     "broccoli-select": "^0.1.0",
     "broccoli-static-compiler": "^0.1.4",
     "broccoli-template": "^0.1.0",
+    "broccoli-timepiece": "^0.2.1",
     "broccoli-uglify-js": "^0.1.0",
-    "node-bourbon": "^1.2.3"
+    "chalk": "~0.4.0",
+    "ghost": "^0.4.2",
+    "grunt": "^0.4.5",
+    "node-bourbon": "^1.2.3",
+    "rimraf": "~2.2.6",
+    "mailchimp": "^1.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "connect": "^3.0.1",
+    "express": "^4.5.0",
+    "http-proxy": "^1.1.4"
   }
 }
