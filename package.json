@@ -11,7 +11,7 @@
   },
   "scripts": {
     "postinstall": "scripts/post-install.bash",
-    "start": "scripts/watcher.js"
+    "start": "scripts/startup.js"
   },
   "devDependencies": {
     "bower": "^1.2.8",

@@ -44,7 +44,6 @@ MailChimpProxyServer.post('/register/:email', function(req,res) {
 	monkeyRegister(req,res,true);
 });
 
-
 MailChimpProxyServer.post('/moreInfo/:email', function(req,res) {
 	monkeyRegister(req,res,false);
 });
