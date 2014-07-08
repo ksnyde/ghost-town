@@ -17,7 +17,7 @@ listId = '6276927180';
 	
 function monkeyRegister(req,res,notify) {
 	api.call('lists', 'subscribe', { id: listId, email: { email: req.params.email}, merge_vars: req.body}, function (error, data) {
-		console.log('Mailchimp has responded to: ' + req.params.email);
+		console.log('Mailchimp has responded to: ' + req.params.email, error, data);
 		if (error) {
 			// MailChimp returns a 214 error when the user already exists in the list
 			if (error.code === 214) {

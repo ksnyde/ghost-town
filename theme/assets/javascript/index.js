@@ -28,10 +28,11 @@ function subscribeMailChimp() {
 			data: $('#signup').serialize(),
 			success: function(msg) {
 				$('.register-message').addClass('animated fadeOutUp');
-				$('.registration-success').addClass('animated fadeInUp');
+				$('.registration-success').removeClass('hidden').addClass('animated fadeInUp');
 				$('#message').html(msg); 
 			},
 			error: function(error) {
+				if(error.code === 409)
 				$('.register-message').addClass('animated fadeOutUp');
 				$('.registration-error').removeClass('hidden').addClass('animated fadeInUp');
 				console.log(error);
@@ -39,6 +40,15 @@ function subscribeMailChimp() {
 		});		
 	}
 	return false;
+}
+
+function chimpState(state) {
+	switch(state) {
+		case 'main':
+			$('.register').addClass('animated fadeOutUp');
+			$('.registration-message').removeClass('fadeOutUp').addClass('fadeInUp');
+			break;
+	}
 }
 	
 

@@ -16,7 +16,7 @@
 				{{/if}}
 	            <h2 class="blog-description">{{@blog.description}}</h2>
 			</div>
-			<div class="register-message">			
+			<div class="register register-message">			
 				<form id="subscribe-form" action="javascript:subscribeMailChimp()" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 					<div id="registration-widget" class="centered-widget">
 						<div class="input-group input-lg">
@@ -30,18 +30,18 @@
 						  </div>
 					  </div>
 				</form>
-				<div id="registration-desc">
+				<div id="description">
 					If you're interested in hearing more about what we're doing,
 					<br/>add your email above and we'll keep you in the loop.
 				</div>		
 			</div> {{! END register-message }}
-			<div class="registration-success hidden">
+			<div class="register registration-success hidden">
 				{{> registration_success}}
 			</div>
-			<div class="registration-already-exists hidden">
+			<div class="register registration-already-exists hidden">
 				{{> registration_already_exists}}
 			</div>
-			<div class="registration-error hidden">
+			<div class="register registration-error hidden">
 				{{> registration_error}}
 			</div>
 			
