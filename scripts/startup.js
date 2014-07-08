@@ -67,7 +67,6 @@ switch(env) {
 		ghost().then(function () {
 			console.log(chalk.green("ghost blogging service ready\n"));
 			var shell = require('child_process').spawn;
-			// shell('open', ['http://127.0.0.1:2368']);
 			console.log(chalk.green("lauching browser to reverse-proxy site.") + " If the browser is blank start the server with 'sudo nginx' \n");
 			shell('open', ['http://127.0.0.1:1080']);
 		});
