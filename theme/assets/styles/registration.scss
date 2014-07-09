@@ -1,0 +1,25 @@
+.registration {
+	margin-top: 3rem;
+}
+
+.registration .description {
+	margin: 0 35px 0 35px;
+	font-size: 1.5rem; 
+	&.light {
+		line-height: 1.8rem;
+		font-weight: lighter;		
+	}
+}
+
+.registration .action-bar {
+	margin-top: 3rem;
+}
+
+.registration .status-icon {
+	margin: 2rem 0 2rem 0;
+}
+
+.registration-error .description {
+	margin-top: 4rem;
+	margin-bottom: 2rem;
+}

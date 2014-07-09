@@ -10,9 +10,9 @@
     <meta name="description" content="{{meta_description}}" />
 
     <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=no" />
 
-    <link rel="shortcut icon" href="{{asset "images/favicon.ico"}}">
+    <link rel="shortcut icon" href="{{asset "images/favicon.png"}}">
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
@@ -32,10 +32,9 @@
     {{{body}}}
 
     <footer class="site-footer">
-        <a class="subscribe icon-feed" href="{{@blog.url}}/rss/"><span class="tooltip">Subscribe!</span></a>
+        <a class="subscribe icon-feed" href="{{@blog.url}}/rss/"><span class="static-tooltip">Subscribe!</span></a>
         <div class="inner">
              <section class="copyright">All content copyright <a href="{{@blog.url}}/">{{@blog.title}}</a> &copy; {{date format="YYYY"}} &bull; All rights reserved.</section>
-             <section class="poweredby">Proudly published with <a class="icon-ghost" href="https://ghost.org">Ghost</a></section>
         </div>
     </footer>
 
@@ -45,8 +44,8 @@
     {{! The main JavaScript files for Thematic Ghost template }}
     <script type="text/javascript" src="{{asset "js/thematic.js"}}"></script>
     <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
-    <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
     <script type="text/javascript" src="{{asset "js/icons.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
     <script type="text/javascript" src="{{asset "js/bootstrap.js"}}"></script>
     <!-- <script type="text/javascript" src="{{asset "js/vendor.js"}}"></script> -->
 </body> 

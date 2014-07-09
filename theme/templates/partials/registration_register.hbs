@@ -1,0 +1,20 @@
+<form id="subscribe-form" action="javascript:subscribeMailChimp()" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+	<div id="registration-widget" class="centered-widget">
+		<div class="input-group input-lg">
+			<div class="input-group-addon"><i class="fa fa-envelope-o"></i> </div>
+			<input id="registration-email" name="EMAIL" class="form-control input-lg" type="email" placeholder="your email address" tabindex="1">
+			<input id="registration-country" type="hidden" class="geo-location country">
+			<input id="registration-region" type="hidden" class="geo-location region">
+			<input id="registration-postal" type="hidden" class="geo-location location">
+			<div class="input-group-addon submit-registration" tabindex="2">
+				<div type="submit" name="subscribe" id="subscribe-button" onClick="subscribeMailChimp()">
+					Register
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<div class="description light">
+	If you're interested in hearing more about what we're doing,
+	<br/>add your email above and we'll keep you in the loop.
+</div>		

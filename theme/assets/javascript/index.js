@@ -10,34 +10,86 @@ var $post = $('.post'),
 	$fnav = $('.fixed-nav'),
 	$postholder = $('.post-holder'),
 	$postafter = $('.post-after'),
-	$sitehead = $('#site-head');
+	$sitehead = $('#site-head'),
+	geoLocation = {},
+	regState = "register";
 	
 function subscribeMailChimp() {
 	var emailAddress = $('#registration-email').val();
-	if(!emailAddress || !emailAddress.match('\@') || !emailAddress.match('\.') ) {
+	var re = /\@\S*\.\S/;
+	if(!emailAddress || !emailAddress.match(re) ) {
 		console.log('no or bad email: ' + emailAddress);
 		$('#registration-widget').addClass('invalid animated shake').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
 			$('#registration-widget').removeClass('animated shake');
 		});
 	} else {
+		geoLocate();
 		console.log("form being submitted: " + emailAddress);
-		$("#message").html("<span class='error'>Adding your email address...</span>");
+		console.log("serialised data:", $('.subscribe-form').serialize() ); 
 		$.ajax({
-			url: 'chimp/subscribe/' + emailAddress, 
-			data: $('#signup').serialize(),
-			success: function(msg) {
-				$('.register-message').addClass('animated fadeOutUp');
-				$('.registration-success').addClass('animated fadeInUp');
-				$('#message').html(msg); 
-			},
-			error: function(error) {
-				$('.register-message').addClass('animated fadeOutUp');
-				$('.registration-error').removeClass('hidden').addClass('animated fadeInUp');
-				console.log(error);
+			url: 'chimp/register/' + emailAddress, 
+			type: "POST",
+			data: $('.subscribe-form').serialize()
+			// data: { FNAME: 'joe'}
+		})
+		.done(function(msg) {
+			console.log('successful', msg);
+			chimpState('success');
+		})
+		.fail(function(error) {
+			console.log(error);
+			if(error.status === 409) {
+				chimpState('already-exists');
+			} else {
+				chimpState('error');
 			}
-		});		
+		});	
 	}
-	return false;
+	return true;
+}
+
+function chimpState(state, clearEmail) {
+	console.log("changing registration state from " + regState + " to " + state + ".");
+	var oldState = regState;
+	regState = state;
+	$('.registration .' + oldState).addClass('animated fadeOutUp hidden');
+	$('.registration .' + regState).removeClass('fadeOutUp hidden').addClass('animated fadeInUp');
+	$('[data-toggle="tooltip"]').tooltip();
+	if(state === "register") {
+		geoLocate();
+	}
+	if(clearEmail) {
+		$('#registration-email').val('');
+	}
+}
+
+function geoLocate(callback) {
+	if(geoLocation && callback) {
+		callback(geoLocation);
+	} else {
+		$.ajax({
+			url: 'http://ipinfo.io/json',
+			type: 'GET'
+		})
+		.done(function(data) {
+			console.log('got geolocation information', data);
+			// replace in appropriate selectors
+			$('.geolocation .ip').val(data.ip);
+			$('.geolocation .country').val(data.country);
+			$('.geolocation .region').val(data.region);
+			$('.geolocation .postal').val(data.postal);
+			$('.geolocation .location').val(data.loc);
+			// set global variable (should probably remove this)
+			geoLocation = data;
+			// return the value to the callback if it exists
+			if(callback) {
+				callback(data);
+			}
+		})
+		.fail(function(error) {
+			console.log("failed to get geolocation", error);
+		})
+	}
 }
 	
 
@@ -64,7 +116,7 @@ function subscribeMailChimp() {
         $('.home-nav').click(function () {
             scrollTo($sitehead);
         })
-
+		
         $('.post-title').each(function () {
         	var t = $(this).text(),
         	    index = $(this).parents('.post-holder').index();
@@ -140,6 +192,8 @@ function subscribeMailChimp() {
             }
         }
     })
+	
+	geoLocate();
     
 
 }(jQuery));

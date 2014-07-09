@@ -1,0 +1,25 @@
+.iflex {
+	display: inline-flex;
+}
+
+.vspace {
+	&.bottom {
+		padding-bottom: 2rem;		
+	}
+	&.top {
+		padding-top: 2rem;		
+	}
+	&.both {
+		padding-top: 2rem;		
+		padding-bottom: 2rem;		
+	}
+}
+
+// Second level lists
+ul li ul {
+	font-size: 1.6rem;
+}
+
+.copyright {
+	padding-top: .5rem;
+}
