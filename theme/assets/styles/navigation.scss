@@ -44,10 +44,10 @@ a.fn-item {
     color: white;
 }
 a.fn-item:hover {
-    color: #9fd067;
+    color: $textNormal;
 }
 a.fn-item.active {
-    color: #86c440;
+    color: $textLight;
     opacity: 1;
 
 }

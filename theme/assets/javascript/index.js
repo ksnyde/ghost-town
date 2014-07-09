@@ -11,6 +11,7 @@ var $post = $('.post'),
 	$postholder = $('.post-holder'),
 	$postafter = $('.post-after'),
 	$sitehead = $('#site-head'),
+	geoLocation = {},
 	regState = "register";
 	
 function subscribeMailChimp() {
@@ -22,18 +23,18 @@ function subscribeMailChimp() {
 			$('#registration-widget').removeClass('animated shake');
 		});
 	} else {
+		geoLocate();
 		console.log("form being submitted: " + emailAddress);
 		console.log("serialised data:", $('.subscribe-form').serialize() ); 
 		$.ajax({
 			url: 'chimp/register/' + emailAddress, 
 			type: "POST",
-			// data: $('.subscribe-form').serialize()
-			data: { FNAME: 'joe'}
+			data: $('.subscribe-form').serialize()
+			// data: { FNAME: 'joe'}
 		})
 		.done(function(msg) {
-			$('.register-message').addClass('animated fadeOutUp');
-			$('.registration-success').removeClass('hidden').addClass('animated fadeInUp');
-			$('#message').html(msg); 
+			console.log('successful', msg);
+			chimpState('success');
 		})
 		.fail(function(error) {
 			console.log(error);
@@ -47,12 +48,48 @@ function subscribeMailChimp() {
 	return true;
 }
 
-function chimpState(state) {
+function chimpState(state, clearEmail) {
 	console.log("changing registration state from " + regState + " to " + state + ".");
 	var oldState = regState;
 	regState = state;
 	$('.registration .' + oldState).addClass('animated fadeOutUp hidden');
-	$('.registration .' + regState).removeClass('fadeOutUp hidden').addClass('animated fadeInUp');	
+	$('.registration .' + regState).removeClass('fadeOutUp hidden').addClass('animated fadeInUp');
+	$('[data-toggle="tooltip"]').tooltip();
+	if(state === "register") {
+		geoLocate();
+	}
+	if(clearEmail) {
+		$('#registration-email').val('');
+	}
+}
+
+function geoLocate(callback) {
+	if(geoLocation && callback) {
+		callback(geoLocation);
+	} else {
+		$.ajax({
+			url: 'http://ipinfo.io/json',
+			type: 'GET'
+		})
+		.done(function(data) {
+			console.log('got geolocation information', data);
+			// replace in appropriate selectors
+			$('.geolocation .ip').val(data.ip);
+			$('.geolocation .country').val(data.country);
+			$('.geolocation .region').val(data.region);
+			$('.geolocation .postal').val(data.postal);
+			$('.geolocation .location').val(data.loc);
+			// set global variable (should probably remove this)
+			geoLocation = data;
+			// return the value to the callback if it exists
+			if(callback) {
+				callback(data);
+			}
+		})
+		.fail(function(error) {
+			console.log("failed to get geolocation", error);
+		})
+	}
 }
 	
 
@@ -79,7 +116,7 @@ function chimpState(state) {
         $('.home-nav').click(function () {
             scrollTo($sitehead);
         })
-
+		
         $('.post-title').each(function () {
         	var t = $(this).text(),
         	    index = $(this).parents('.post-holder').index();
@@ -155,6 +192,8 @@ function chimpState(state) {
             }
         }
     })
+	
+	geoLocate();
     
 
 }(jQuery));
