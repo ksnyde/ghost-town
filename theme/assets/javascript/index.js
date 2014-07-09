@@ -10,45 +10,49 @@ var $post = $('.post'),
 	$fnav = $('.fixed-nav'),
 	$postholder = $('.post-holder'),
 	$postafter = $('.post-after'),
-	$sitehead = $('#site-head');
+	$sitehead = $('#site-head'),
+	regState = "register";
 	
 function subscribeMailChimp() {
 	var emailAddress = $('#registration-email').val();
-	if(!emailAddress || !emailAddress.match('\@') || !emailAddress.match('\.') ) {
+	var re = /\@\S*\.\S/;
+	if(!emailAddress || !emailAddress.match(re) ) {
 		console.log('no or bad email: ' + emailAddress);
 		$('#registration-widget').addClass('invalid animated shake').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
 			$('#registration-widget').removeClass('animated shake');
 		});
 	} else {
 		console.log("form being submitted: " + emailAddress);
-		$("#message").html("<span class='error'>Adding your email address...</span>");
+		console.log("serialised data:", $('.subscribe-form').serialize() ); 
 		$.ajax({
 			url: 'chimp/register/' + emailAddress, 
 			type: "POST",
-			data: $('#signup').serialize(),
-			success: function(msg) {
-				$('.register-message').addClass('animated fadeOutUp');
-				$('.registration-success').removeClass('hidden').addClass('animated fadeInUp');
-				$('#message').html(msg); 
-			},
-			error: function(error) {
-				if(error.code === 409)
-				$('.register-message').addClass('animated fadeOutUp');
-				$('.registration-error').removeClass('hidden').addClass('animated fadeInUp');
-				console.log(error);
+			// data: $('.subscribe-form').serialize()
+			data: { FNAME: 'joe'}
+		})
+		.done(function(msg) {
+			$('.register-message').addClass('animated fadeOutUp');
+			$('.registration-success').removeClass('hidden').addClass('animated fadeInUp');
+			$('#message').html(msg); 
+		})
+		.fail(function(error) {
+			console.log(error);
+			if(error.status === 409) {
+				chimpState('already-exists');
+			} else {
+				chimpState('error');
 			}
-		});		
+		});	
 	}
-	return false;
+	return true;
 }
 
 function chimpState(state) {
-	switch(state) {
-		case 'main':
-			$('.register').addClass('animated fadeOutUp');
-			$('.registration-message').removeClass('fadeOutUp').addClass('fadeInUp');
-			break;
-	}
+	console.log("changing registration state from " + regState + " to " + state + ".");
+	var oldState = regState;
+	regState = state;
+	$('.registration .' + oldState).addClass('animated fadeOutUp hidden');
+	$('.registration .' + regState).removeClass('fadeOutUp hidden').addClass('animated fadeInUp');	
 }
 	
 

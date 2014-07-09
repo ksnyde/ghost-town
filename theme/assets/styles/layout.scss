@@ -1,0 +1,16 @@
+.iflex {
+	display: inline-flex;
+}
+
+.vspace {
+	&.bottom {
+		padding-bottom: 2rem;		
+	}
+	&.top {
+		padding-top: 2rem;		
+	}
+	&.both {
+		padding-top: 2rem;		
+		padding-bottom: 2rem;		
+	}
+}

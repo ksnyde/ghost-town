@@ -1,6 +1,52 @@
 {{! Registration Success }}
-<i class="fa fa-check-square-o"></i> 
-<br>
-Thanks for expressing interest. You've been registered for the {{@blog.title}} newsletter. We'll make sure you're informed
-without overduing the communication. Expect updates from us every month or two. Please check your inbox for an email from us 
-where you'll need to confirm the email address to start your subscription and we look forward to being in touch.
+<div class="row description-block">
+	<div class="col-md-3">
+		<i class="fa fa-check-circle-o fa-10x status-icon"></i>
+	</div>
+	<div class="col-md-9">
+		You've been registered for the {{@blog.title}} newsletter. Please check your inbox for an email 
+		to confirm your subscription.
+		<hr>
+		<div class="vspace bottom">
+			If you have time, please provide a little more context:
+		</div>
+		<form class="form-horizontal" role="form">
+		    <div class="form-group">
+		      <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+		      <div class="col-sm-10 iflex">
+		        <input type="email" class="form-control " id="FNAME" placeholder="first"> &nbsp;&nbsp;
+		        <input type="email" class="form-control " id="LNAME" placeholder="last">
+		      </div>
+		    </div>
+		    <div class="form-group">
+				<label for="interest" class="col-sm-2 control-label">Interests</label>
+				<label class="checkbox-inline">
+				  <input type="checkbox" id="inlineCheckbox1" value="user"> User of System
+				</label>
+				<label class="checkbox-inline">
+				  <input type="checkbox" id="inlineCheckbox2" value="coach"> Coach
+				</label>
+				<label class="checkbox-inline">
+				  <input type="checkbox" id="inlineCheckbox3" value="investor"> Investor
+				</label>
+				<label class="checkbox-inline">
+				  <input type="checkbox" id="inlineCheckbox3" value="other"> Other
+				</label>
+			</div>
+		    <div class="form-group">
+		      <label for="inputEmail3" class="col-sm-2 control-label">Country</label>
+		      <div class="col-sm-10 iflex">
+		        <input type="email" class="form-control " id="FNAME" placeholder="first"> &nbsp;&nbsp;
+		        <input type="email" class="form-control " id="LNAME" placeholder="last">
+		      </div>
+		    </div>
+		</form>
+		<br/>
+		Thanks for expressing an interest!
+	</div>
+</div>
+
+<div class="action-bar row">
+	<button type="button" class="btn btn-default" onclick="chimpState('main')">Add details</button>
+	<button type="button" class="btn btn-default" onclick="chimpState('main')">Not now</button>
+</div>

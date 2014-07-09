@@ -1,6 +1,17 @@
 {{! Registration Success }}
-<i class="fa fa-check-square-o"></i> 
-<br>
-Thanks for expressing interest. You've been registered for the {{@blog.title}} newsletter. We'll make sure you're informed
-without overduing the communication. Expect updates from us every month or two. Please check your inbox for an email from us 
-where you'll need to confirm the email address to start your subscription and we look forward to being in touch.
+<div class="row description-block">
+	<div class="col-md-3">
+		<i class="fa fa-user fa-5x status-icon"></i>
+	</div>
+	<div class="col-md-9 vspace top">
+		We checked and it looks like you had already registered. 
+		In any event, we've resent you the confirmation email for your records 
+		and you will get our newsletter whenever they are sent out.
+	</div>
+</div>
+
+<div class="action-bar row">
+	<button type="button" class="btn btn-default" onclick="chimpState('register')">ok</button> 
+</div>
+	
+
