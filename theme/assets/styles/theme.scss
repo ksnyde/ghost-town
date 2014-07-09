@@ -11,6 +11,8 @@ $brand-primary: $backgroundBranded;
 $input-border-focus: $backgroundBranded; // green border for active form control
 $input-color-placeholder: $textLight;
 @import "bootstrap";
+@import "media-queries.scss";
+
 
 ::selection {
 	color: $colorNormal;

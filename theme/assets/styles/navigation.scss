@@ -37,7 +37,9 @@ menu {
 }
 a.fn-item {
     display: block;
+	color: $darkGrey;
     cursor: pointer;
+	text-decoration: none;
     opacity: 0.7;
 }
 .white {
@@ -45,11 +47,15 @@ a.fn-item {
 }
 a.fn-item:hover {
     color: $textNormal;
+	background-color: $backgroundHover;
+	text-decoration: none !important;
 }
 a.fn-item.active {
-    color: $textLight;
+    color: $textInverted;
+	background-color: $backgroundSelected;
+	padding: 3px;
     opacity: 1;
-
+	border-radius: 2px;
 }
 
 .home-button {

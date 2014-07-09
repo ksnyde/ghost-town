@@ -37,7 +37,7 @@ function watch(destDir, interval) {
 		helpers.copyRecursivelySync(results.directory, destDir);
 		console.log(chalk.green("Broccoli build successful - " + Math.floor(results.totalTime / 1e6) + 'ms'), '[' + getTimeString() + ']');
 		rimraf.sync(tempDir);
-		console.long(chalk.dim("Broccoli temp directory cleared"));
+		console.log(chalk.dim("Broccoli temp directory cleared"));
 	});
 
 	watcher.on('error', function(err) {
