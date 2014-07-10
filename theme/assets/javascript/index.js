@@ -48,6 +48,20 @@ function subscribeMailChimp() {
 	return true;
 }
 
+function chimpProfileEmail() {
+	var emailAddress = $('#registration-email').val();
+	$.ajax({
+		url: 'chimp/profileEmail/' + emailAddress, 
+		type: "POST",
+	})
+	.done(function(msg) {
+		console.log('sent subscriber their profile email', msg);
+	})
+	.fail(function(error) {
+		console.log(error);
+	});
+}
+
 function chimpState(state, clearEmail) {
 	console.log("changing registration state from " + regState + " to " + state + ".");
 	var oldState = regState;
@@ -55,9 +69,7 @@ function chimpState(state, clearEmail) {
 	$('.registration .' + oldState).addClass('animated fadeOutUp hidden');
 	$('.registration .' + regState).removeClass('fadeOutUp hidden').addClass('animated fadeInUp');
 	$('[data-toggle="tooltip"]').tooltip();
-	if(state === "register") {
-		geoLocate();
-	}
+	geoLocate();
 	if(clearEmail) {
 		$('#registration-email').val('');
 	}
@@ -74,11 +86,11 @@ function geoLocate(callback) {
 		.done(function(data) {
 			console.log('got geolocation information', data);
 			// replace in appropriate selectors
-			$('.geolocation .ip').val(data.ip);
-			$('.geolocation .country').val(data.country);
-			$('.geolocation .region').val(data.region);
-			$('.geolocation .postal').val(data.postal);
-			$('.geolocation .location').val(data.loc);
+			$('.geolocation.ip').val(data.ip);
+			$('.geolocation.country').val(data.country);
+			$('.geolocation.region').val(data.region);
+			$('.geolocation.postal').val(data.postal);
+			$('.geolocation.location').val(data.loc);
 			// set global variable (should probably remove this)
 			geoLocation = data;
 			// return the value to the callback if it exists
