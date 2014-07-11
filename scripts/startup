@@ -1,2 +1,4 @@
 #!/bin/bash
+export GHOST_LOG_DIR;
+export NODE_ENV;
 node --harmony ./scripts/startup.js

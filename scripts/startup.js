@@ -1,4 +1,4 @@
-#!/usr/bin/env node --harmony
+#!/usr/bin/env node
 /*jslint node: true */
 /*jshint strict:true */
 'use strict';
