@@ -49,6 +49,7 @@ a.fn-item:hover {
     color: $textNormal;
 	background-color: $backgroundHover;
 	text-decoration: none !important;
+	border-radius: 2px;
 }
 a.fn-item.active {
     color: $textInverted;

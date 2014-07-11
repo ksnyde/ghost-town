@@ -46,6 +46,10 @@ function monkeyRegister(req,res,notify) {
 	});
 }
 
+function monkeyProfileEmail(req,res) {
+	
+}
+
 function listen(port) {
 	var listenPort = port || 4400;
 	// console.log("setting up listener for MailChimp proxy ... " + listenPort);
@@ -58,8 +62,26 @@ function listen(port) {
 	service.post('/moreInfo/:email', function(req,res) {
 		monkeyRegister(req,res,false);
 	});
+	service.post('/profileEmail/:email', function(req,res) {
+		monkeyProfileEmail(req,res);
+	});
+	// handle exits
+	var atExit = function() { 
+		console.log("\nChimp proxy " + chalk.bold("shutting down"));
+	};
+	process.on('SIGINT', atExit);
+	process.on('SIGTERM', atExit);
+	process.on('uncaughtException', function(err) {
+		console.log("\nChimp proxy ran into problems:", err);
+	});
+	
 	service.listen(listenPort);
 }
 
+function on(event, callback) {
+	return service.on(event,callback);
+}
+
 exports.listen = listen;
+exports.on = on;
 	

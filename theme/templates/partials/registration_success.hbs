@@ -8,6 +8,7 @@
 		to confirm your subscription. If you have time, please provide a little more context:
 		<hr>
 		<form id="additional-info" class="form-horizontal" role="form">
+			{{! Name }}
 		    <div class="form-group">
 		      <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
 		      <div class="col-sm-10 iflex">
@@ -15,31 +16,37 @@
 		        <input type="email" class="form-control " id="LNAME" placeholder="last">
 		      </div>
 		    </div>
+			{{! Interests }}
 		    <div class="form-group">
-				<label for="interest" class="col-sm-2 control-label">Interests</label>
-				<label class="checkbox-inline">
-				  <input type="checkbox" id="inlineCheckbox1" value="user">
-				  <span data-toggle="tooltip" data-placement="top" title="You want to use LifeGadget to track your personal data"> User</span>
+				<label for="interest" class="col-sm-2 control-label">
+					Interests
 				</label>
-				<label class="checkbox-inline">
-				  <input type="checkbox" id="inlineCheckbox2" value="coach">
-				  <span data-toggle="tooltip" data-placement="top" title="You see LifeGadget as a way to provide coaching services"> Coach</span>
-				</label>
-				<label class="checkbox-inline">
-				  <input type="checkbox" id="inlineCheckbox3" value="investor">
-				  <span data-toggle="tooltip" data-placement="top" title="You would consider becoming an investor in LifeGadget"> Investor
-				</label>
-				<label class="checkbox-inline">
-				  <input type="checkbox" id="inlineCheckbox3" value="other"> Other
-				</label>
+				<div class="col-sm-10 iflex left">
+					<label class="checkbox-inline">
+					  <input type="checkbox" id="inlineCheckbox1" value="user">
+					  <span data-toggle="tooltip" data-placement="top" title="You want to use LifeGadget to track your personal data"> User</span>
+					</label>
+					<label class="checkbox-inline">
+					  <input type="checkbox" id="inlineCheckbox2" value="coach">
+					  <span data-toggle="tooltip" data-placement="top" title="You see LifeGadget as a way to provide coaching services"> Coach</span>
+					</label>
+					<label class="checkbox-inline">
+					  <input type="checkbox" id="inlineCheckbox3" value="investor">
+					  <span data-toggle="tooltip" data-placement="top" title="You would consider becoming an investor in LifeGadget"> Investor
+					</label>
+					<label class="checkbox-inline">
+					  <input type="checkbox" id="inlineCheckbox3" value="other"> Other
+					</label>
+				</div>
 			</div>
+			{{! Country }}
 		    <div class="form-group">
-		      <label for="inputEmail3" class="col-sm-2 control-label">Country</label>
-		      <div class="col-sm-10 iflex">
-		        <input type="string" class="form-control " id="COUNTRY" placeholder="country"> &nbsp;&nbsp;
-		        <input type="email" class="form-control " id="LNAME" placeholder="last">
+		      <label for="inputEmail3" class="col-sm-2 control-label">Location</label>
+		      <div class="col-sm-5 iflex">
+		        <input id="registration-country" name="COUNTRY" placeholder="country" type="string" class="form-control geolocation country" > &nbsp;&nbsp;
 		      </div>
 		    </div>
+			
 		</form>
 	</div>
 </div>
