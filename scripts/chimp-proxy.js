@@ -7,9 +7,6 @@ var
 	bodyParser = require('body-parser'),
 	logger = require('morgan'),
 	chalk = require('chalk'),
-	atExit = function() { 
-		console.log("\nChimp proxy " + chalk.bold("shutting down"));
-	},
 	service = express();
 // add node's body parser to middelware
 service.use(logger('dev'));
@@ -19,6 +16,7 @@ var
 	MailChimpAPI = require('mailchimp').MailChimpAPI,
 	apiKey = '27505fe88068079febf4c461990296dc-us4',
 	listId = '6276927180';
+	
 function monkeyRegister(req,res,notify) {
 	console.log('Registering user', req.params.email);
 	// initialise MailChimp API
@@ -52,8 +50,6 @@ function monkeyProfileEmail(req,res) {
 	
 }
 
-
-
 function listen(port) {
 	var listenPort = port || 4400;
 	// console.log("setting up listener for MailChimp proxy ... " + listenPort);
@@ -70,12 +66,22 @@ function listen(port) {
 		monkeyProfileEmail(req,res);
 	});
 	// handle exits
+	var atExit = function() { 
+		console.log("\nChimp proxy " + chalk.bold("shutting down"));
+	};
 	process.on('SIGINT', atExit);
 	process.on('SIGTERM', atExit);
-	process.on('uncaughtException', atExit);
+	process.on('uncaughtException', function(err) {
+		console.log("\nChimp proxy ran into problems:", err);
+	});
 	
 	service.listen(listenPort);
 }
 
+function on(event, callback) {
+	return service.on(event,callback);
+}
+
 exports.listen = listen;
+exports.on = on;
 	

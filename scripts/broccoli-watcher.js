@@ -47,15 +47,19 @@ function watch(destDir, interval) {
 	return watcher;
 }
 
+function clear(destDir) {
+	destDir = destDir || 'public';
+	rimraf.sync(destDir);
+}
+
 function build(destDir) {
     var tree    = broccoli.loadBrocfile();
     var builder = new broccoli.Builder(tree);
 
     rimraf.sync(destDir);
-    helpers.copyRecursivelySync(results.directory, destDir);
+    helpers.copyRecursivelySync('/', destDir);
 	console.log(chalk.green("Broccoli built successfully - " + Math.floor(results.totalTime / 1e6) + 'ms'), '[' + getTimeString() + ']');
 }
-
 
 exports.watch = watch;
 exports.build = build;
