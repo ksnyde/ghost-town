@@ -29,15 +29,6 @@ $input-color-placeholder: $textLight;
 	margin-bottom: 2rem;
 }
 
-#site-head-content {
-	@include background-image(
-		linear-gradient(to top, hsla(100%, 100%, 100%, 0.30) 0%, hsla(100%, 100%, 100%, 0.1) 50%)
-	);
-	padding: 15px 35px 15px 35px;
-	border-radius: 8px;
-	right:5%;
-}
-
 .submit-registration {
 	@include background(linear-gradient(#E9E9E9, #D5D5D5 ) left repeat, radial-gradient(#E9E9E9, #D5D5D5 ) left repeat);
 	padding-right: 10px;

@@ -10,10 +10,7 @@ This repo grew out of the need to service two key use-cases:
 	- Allow use of SASS style sheets that compile down to CSS automatically
 	- Provide 
 
-
 ![ ](documentation/images/services.png)
-
-
 
 is intended to help you build an asset-pipeline for Ghost blogging themes. The asset pipeline leverages [Broccoli](https://github.com/broccolijs) to ensure that your SASS scripts are compiled, your JS concatinated, and your bower packaged included. As the image above illustrates visually, this package will do the following:
 
@@ -37,17 +34,45 @@ To install a **Thematic Ghost** working template go to an appropriate directory 
 
 ````
 git clone https://github.com/ksnyde/thematic-ghost
+npm install -g broccoli-cli
 cd thematic-ghost
 npm install
 ````
 
-This will install all the required npm modules (including Ghost) along with the default bower modules as well as do very basic Ghost configuration so that your theme is available as an option in the admin interface.
+This will:
+
+- install all the required npm modules (which includes Ghost itself), 
+- then the bower modules, 
+- and then link your dynamic theme to the Ghost instance (so the "ThematicGhost" theme is an available option).
+
+You're mostly done but in order to operate effectively you'll need to install **nginx** to front the services[^why-nginx]. To install this will be somewhat variant based on the OS your running. For OSX it is as simple as:
+
+`brew install nginx` (assuming you're using the **brew** package manager)
+
+On ubuntu it is using the built in apt-get:
+
+`sudo apt-get install nginx`
+
+Anyway, it should be pretty easy to get it installed, then configuring it you'll want to heavily borrow from the example configuration file that comes with this repo. You can find the example at `nginx.conf.example` in the root folder of this repo. Copy it to the appropriate place for your OS[^nginx-config-file] or merge into your existing configuration if you're already using nginx.
+
+
+[^why-nginx]: **nginx** is being used as a reverse proxy and is sometimes considered a more production-hardened forward face for your blog, that said, the real reason we're using it here is more to do with the fact that integration with MailChimp is insecure if done from the browser and therefore a server proxy is necessary and **nginx** allows us to offer this proxy on the same URL and avoid all the cross-site security issues that otherwise would present themselves.
+
+[^nginx-config-file]: `/usr/local/etc/nginx/nginx.conf` if installed with brew on OSX, `/etc/nginx/nginx.conf` on Ubuntu
 
 ## Usage ##
 
 The basic commands are available via the npm submenu:
 
-- `npm start` - starts both the broccoli build pipeline and the ghost server. this will automatically open your browser to the blog URL once the server has started.
+- `npm start` - starts all required services (asset build, ghost, chimp proxy)
+
+The environment variables include:
+
+- `NODE_ENV` - either 'production' or 'development'
+- `GHOST_USER_ID` - the *user* who should own the assets/files
+- `GHOST_GROUP_ID` - the *group* who should be given ownership for the assets/files
+
+
 
 ## Pull Requests ##
 

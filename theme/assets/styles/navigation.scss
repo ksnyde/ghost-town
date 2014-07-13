@@ -1,3 +1,12 @@
+.navigate-down {
+	position: absolute;
+	bottom: 2%;
+	width: 100%;
+	
+	& div.arrow {
+		text-align: center;
+	}
+}
 
 menu {
 	margin-left: -10px;
@@ -5,6 +14,7 @@ menu {
 	item {
 		margin-right: 8px;
 		margin-left: 8px;
+		padding: 2px;
 		cursor: pointer;
 		font-weight: bolder;
 		font-size: 1.6rem;
@@ -13,6 +23,8 @@ menu {
 			text-decoration-line: overline;
 			text-decoration-style: wavy;
 			text-decoration-color: #193616;
+			background-color: $backgroundHoverSubtle;
+			border-radius: 2px;
 			color: $colorDarker;
 			@include transition(all .15s ease-in);
 		}

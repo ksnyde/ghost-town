@@ -17,27 +17,29 @@ the {body} of the default.hbs template, which contains our header/footer. }}
 				<h2 class="blog-description">{{@blog.description}}</h2>
 			</div>
 			<div class="registration">
-				<div class="register">
+				<div class="register screen">
 					{{> registration_register}}
 				</div>
-				<div class="success hidden">
+				<div class="success screen hidden">
 					{{> registration_success}}
 				</div>
-				<div class="already-exists hidden">
+				<div class="already-exists screen hidden">
 					{{> registration_already_exists}}
 				</div>
-				<div class="error hidden">
+				<div class="error screen hidden">
 					{{> registration_error}}
 				</div>
-			</div> {{! END registeration }}
-			
-			<menu>
-				<item tabindex="3" id="about-link">About</item> |
-				<item tabindex="5">Contact Us</item>
-			</menu>
-			
-			<i id='header-arrow' class="fa fa-angle-down"></i>
+				<div class="contact-us screen hidden">
+					{{> contact_us}}
+				</div>
+			</div> {{! END registeration }}		
 		</div>
+		<div class="navigate-down">
+			<div class="arrow">
+				<i id='header-arrow' class="fa fa-angle-down"></i>
+			</div>
+		</div>
+		
 	</div> 
 </header>
 
@@ -45,7 +47,9 @@ the {body} of the default.hbs template, which contains our header/footer. }}
 <main class="content" role="main">
 
 	<div class='fixed-nav'>
-		<i id='upward-arrow' class="fa fa-angle-up home-nav"></i><br/>
+		<!-- 
+			<i id='upward-arrow' class="fa fa-angle-up home-nav"></i><br/>
+		-->
 		<span class="home-button home-nav">{{@blog.title}}</span><br/>
 	</div>
 

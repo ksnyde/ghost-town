@@ -12,7 +12,8 @@ var $post = $('.post'),
 	$postafter = $('.post-after'),
 	$sitehead = $('#site-head'),
 	geoLocation = {},
-	regState = "register";
+	currentState = "register",
+	oldState = null;
 	
 function subscribeMailChimp() {
 	var emailAddress = $('#registration-email').val();
@@ -62,15 +63,37 @@ function chimpProfileEmail() {
 	});
 }
 
-function chimpState(state, clearEmail) {
-	console.log("changing registration state from " + regState + " to " + state + ".");
-	var oldState = regState;
-	regState = state;
-	$('.registration .' + oldState).addClass('animated fadeOutUp hidden');
-	$('.registration .' + regState).removeClass('fadeOutUp hidden').addClass('animated fadeInUp');
+function chimpState(state, options) {
+	options = options || {};
+	if (typeof options === 'string') {
+		options = JSON.parse(options);		
+	}
+	var transitionTypes = {
+		'default': {'in':'fadeInUp', 'out': 'fadeOutUp'},
+		'up': {'in':'fadeInUp', 'out': 'fadeOutUp'},
+		'down': {'in':'fadeInDown', 'out': 'fadeOutDown'},
+		'right': {'in':'fadeInLeft', 'out': 'fadeOutRight'},
+		'left': {'in':'fadeInRight', 'out': 'fadeOutLeft'},
+	};
+	var transition = options.transition || 'default';
+	transition = transitionTypes[transition];
+	console.log("changing registration state from " + currentState + " to " + state + ".");
+	console.log("options are: ", options);
+	oldState = currentState;
+	currentState = state;
+	// remove the OLD
+	$('.registration .' + oldState).addClass('animated ' + transition.out ).one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function() { 
+		console.log('clearing up the transition out for ' + oldState, this);
+		$(this).addClass('hidden').removeClass('animated ' + transition.out);
+	});
+	// bring in the NEW
+	$('.registration .' + currentState).removeClass('hidden').addClass('animated ' + transition.in).one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function() {
+		console.log('clearing up the transition in for ' + currentState, this);
+		$(this).removeClass('animated ' + transition.in);
+	});
 	$('[data-toggle="tooltip"]').tooltip();
 	geoLocate();
-	if(clearEmail) {
+	if(options.clearEmail) {
 		$('#registration-email').val('');
 	}
 }
@@ -118,7 +141,10 @@ function geoLocate(callback) {
      
         $('#about-link').click( function () {
         	scrollTo($first);
-        })
+        });
+        $('#contact-link').click( function () {
+        	chimpState('contact-us',{transition: 'left'});
+        });
         $('.btn.last').click( function () {
         	scrollTo($last);
         })

@@ -1,0 +1,34 @@
+<div class="section col-xs-12">
+	<form id="contact-form" action="javascript:contactUs()" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+		<div class="input-group vpadding col-sm-6">
+			<div class="input-group-addon">
+				<i class="fa fa-fw fa-user"></i>
+			</div>
+			<input id="registration-email" name="NAME" class="form-control" type="string" placeholder="your name" tabindex="1">
+		</div>
+		<div class="input-group vpadding col-sm-6">
+			<div class="input-group-addon">
+				<i class="fa fa-fw fa-envelope-o"></i>
+			</div>
+			<input id="registration-email" name="EMAIL" class="form-control" type="email" placeholder="email address" tabindex="2">
+		</div>
+		<textarea id=”message” name=”message” class="form-control vpadding resizable-vertical" placeholder="your message"></textarea>
+		<div class="input-group checkbox col-xs-6 justify-left">
+		    <label>
+				<input type="checkbox" class="alignment">
+				add me to the newsletter
+		    </label>
+		</div>
+		<div class="row col-xs-6 justify-left">
+			<button type="button" class="btn btn-success disabled" onclick="chimpAdditional('#additional-info')">
+				<i class="fa fa-play-circle-o"></i> Send
+			</button>
+			<button type="button" class="btn btn-default" onclick="chimpState('register',{transition: 'right'})">
+				<i class="fa fa-times-circle-o" style="color:grey"></i> &nbsp; Cancel
+			</button>
+		</div>
+		<input id="registration-country" type="hidden" class="geo-location country">
+		<input id="registration-region" type="hidden" class="geo-location region">
+		<input id="registration-postal" type="hidden" class="geo-location location">
+	</form>
+</div>

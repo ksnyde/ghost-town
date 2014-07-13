@@ -167,7 +167,7 @@ switch(env) {
 								return;
 							} else {
 								console.log(" - ownership permissions to " + chalk.green("public") + " directory changed to " + chalk.green(downgradedUser));
-								var chgrp = shell('chgrp',['-R', downgradedUser, 'public']);
+								var chgrp = shell('chgrp',['-R', downgradedGroup, 'public']);
 								chgrp.on('exit',function(code,signal) {
 									if(code !== 0) {
 										console.log(chalk.red('Build: problems changing group ownership on "public" directory to ' + chalk.bold(downgradedGroup) + '.'));

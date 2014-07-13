@@ -23,3 +23,28 @@ ul li ul {
 .copyright {
 	padding-top: .5rem;
 }
+
+textarea {
+	min-height: 95px;
+	max-width: 100%;
+}
+
+.input-group.vpadding {
+	padding-bottom:8px;
+}
+
+.checkbox label, .radio label {
+	font-size: 1.6rem;
+}
+
+input.hpadding {
+	padding-left: 10px;
+}
+
+.justify-right {
+	text-align: right;
+}
+
+.justify-left {
+	text-align: left;
+}
