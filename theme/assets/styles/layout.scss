@@ -18,6 +18,14 @@
 // Second level lists
 ul li ul {
 	font-size: 1.6rem;
+	& li {
+		list-style-type: circle;		
+	}
+}
+
+li {
+  list-style-type: disc;
+  margin-left: 30px;
 }
 
 .copyright {

@@ -10,6 +10,8 @@
 $brand-primary: $backgroundBranded;
 $input-border-focus: $backgroundBranded; // green border for active form control
 $input-color-placeholder: $textLight;
+$link-color: $textLink;
+$link-hover-color: $textHover;
 @import "bootstrap";
 @import "media-queries.scss";
 
