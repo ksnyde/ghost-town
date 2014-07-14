@@ -41,7 +41,8 @@ function watch(destDir, interval) {
 	});
 
 	watcher.on('error', function(err) {
-		console.log(chalk.red('\n\nBuild failed.\n'));
+		console.log(chalk.bold.red('\n\nBuild failed:'));
+		console.log(chalk.grey(err));
 	});
 
 	return watcher;

@@ -63,6 +63,48 @@ function chimpProfileEmail() {
 	});
 }
 
+function contactUs() {
+	var emailAddress = $('#customer-email').val();
+	var data = $('#contact-form').serialize();
+	$.ajax({
+		url: 'chimp/contact/' + emailAddress,
+		type: "POST",
+		data: data
+	})
+	.done(function(msg) {
+		chimpState('register',{transition:'left'});
+		messageWindow('<i class="fa fa-send-o"></i> Message sent. Thank you!', {timeframe: 5000});
+	})
+	.fail(function(error) {
+		console.log(error);
+		messageWindow("Uh oh. There was a problem sending. Please try again soon.", {timeframe: 15000});
+	});
+}
+
+function messageWindow(msg, options) {
+	options = options || {};
+	if (typeof options === 'string') {
+		options = JSON.parse(options);		
+	}
+	var transitionTypes = {
+		'default': {'in':'rubberBand', 'out': 'fadeOut'},
+	};
+	var transition = options.transition || 'default';
+	var timeframe = options.timeframe || 5000;
+	transition = transitionTypes[transition];
+	$('#message-window').html(msg);
+	$('#message-window').removeClass('invisible').addClass('animated ' + transition.in).one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function() {
+		$('#message-window').removeClass('animated ' + transition.in);
+		// keep message window open for timeframe
+		window.setTimeout(function() {
+			// now fade it out
+			$('#message-window').removeClass('invisible').addClass('animated ' + transition.out).one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function() {
+				$('#message-window').addClass('invisible').removeClass('animated ' + transition.out);				
+			})
+		}, timeframe);
+	});
+}
+
 function chimpState(state, options) {
 	options = options || {};
 	if (typeof options === 'string') {

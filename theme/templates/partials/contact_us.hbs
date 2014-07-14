@@ -1,26 +1,33 @@
 <div class="section col-xs-12">
-	<form id="contact-form" action="javascript:contactUs()" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+	<form id="contact-form" 
+			action="javascript:contactUs()" 
+			id="contact-form" 
+			name="contact-form" 
+			data-requires="#contact-email,#contact-message"
+			class="validate" 
+			target="_blank" 
+			novalidate>
 		<div class="input-group vpadding col-sm-6">
 			<div class="input-group-addon">
 				<i class="fa fa-fw fa-user"></i>
 			</div>
-			<input id="registration-email" name="NAME" class="form-control" type="string" placeholder="your name" tabindex="1">
+			<input id="customer-name" name="name" class="form-control" type="string" placeholder="your name" tabindex="1">
 		</div>
 		<div class="input-group vpadding col-sm-6">
 			<div class="input-group-addon">
 				<i class="fa fa-fw fa-envelope-o"></i>
 			</div>
-			<input id="registration-email" name="EMAIL" class="form-control" type="email" placeholder="email address" tabindex="2">
+			<input id="customer-email" name="email" class="form-control" type="email" placeholder="email address" tabindex="2">
 		</div>
-		<textarea id=”message” name=”message” class="form-control vpadding resizable-vertical" placeholder="your message"></textarea>
+		<textarea name='customerMessage' id='message' type="string" class="form-control vpadding resizable-vertical" placeholder="your message"></textarea>
 		<div class="input-group checkbox col-xs-6 justify-left">
 		    <label>
-				<input type="checkbox" class="alignment">
+				<input name="newletter" type="checkbox" class="alignment">
 				add me to the newsletter
 		    </label>
 		</div>
 		<div class="row col-xs-6 justify-left">
-			<button type="button" class="btn btn-success disabled" onclick="chimpAdditional('#additional-info')">
+			<button type="button" class="btn btn-success " onclick="contactUs()">
 				<i class="fa fa-play-circle-o"></i> Send
 			</button>
 			<button type="button" class="btn btn-default" onclick="chimpState('register',{transition: 'right'})">

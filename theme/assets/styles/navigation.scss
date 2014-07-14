@@ -1,3 +1,16 @@
+#message-window {
+	@extend .right;
+	position: relative;
+	right: 5%;
+	width: 80%;
+	max-width: 700px;
+	height: 65px;
+	border-radius: 8px;
+	@include background-image(
+		radial-gradient(to top, hsla(100%, 100%, 100%, 0.2) 0%, hsla(100%, 100%, 100%, 0.1) 50%, hsla(100%, 100%, 100%, 0.05) 95%)
+	);
+}
+
 .navigate-down {
 	position: absolute;
 	bottom: 2%;

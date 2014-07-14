@@ -1,0 +1,45 @@
+ol,ul,il {
+	margin-top: 0px;
+	margin-bottom: 1.5rem ;
+	li {
+		margin-left:30px;
+	}	
+}
+
+
+ul li {
+	list-style-type: disc;
+	& ul li {
+		list-style-type: circle;
+		font-size: 1.6rem;
+		
+		& ul li {
+			list-style-type: square;
+		}
+	}
+}
+
+ol li {
+	list-style-type: decimal;
+	& ul li {
+		list-style-type: lower-alpha;
+		font-size: 1.6rem;
+		
+		& ul li {
+			list-style-type: lower-roman;
+		}
+	}
+}
+
+// 'il' is a numeric list at top level and unordered after that
+il li {
+	list-style-type: decimal;
+	& ul li {
+		list-style-type: disc;
+		font-size: 1.6rem;
+		
+		& ul li {
+			list-style-type: circle;
+		}
+	}
+}
